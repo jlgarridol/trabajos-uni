@@ -6,8 +6,7 @@ Responsable
 
 Compañeros
 -
-* José Miguel Ramírez Sanz
-* Luis Miguel Cabrejas Arce
+* Luis Pedrosa Ruiz
 
 Aportes de terceros
 -
