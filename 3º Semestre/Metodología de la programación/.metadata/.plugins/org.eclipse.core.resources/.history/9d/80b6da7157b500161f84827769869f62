@@ -1,0 +1,142 @@
+package juego.control;
+
+import juego.modelo.Celda;
+import juego.modelo.Jugador;
+import juego.modelo.Tablero;
+
+/**
+ * Arbitro con la mayoría de los metodos implementados salvo jugar.
+ * 
+ * @author José Miguel Ramírez Sanz
+ * @author José Luis Garrido Labrador
+ * @since 1.0
+ * @version 1.0
+ */
+public abstract class ArbitroAbstracto implements Arbitro{
+	// Atributos
+	/**
+	 * Tablero.
+	 */
+	private Tablero tablero;
+
+	/**
+	 * Jugador azul.
+	 */
+	private Jugador azul;
+
+	/**
+	 * Jugador rojo.
+	 */
+	private Jugador rojo;
+
+	/**
+	 * Turno.
+	 */
+	private Turno turno;
+	// static int llamadas; //Debug
+	
+	/**
+	 * Construimos un árbitro con un tablero, sus jugadores y su turno.
+	 * 
+	 * @param tablero objeto referencia a un tablero (o descendiente)
+	 * @param rojo jugador de color rojo
+	 * @param azul jugador de color azul
+	 */
+	public ArbitroAbstracto(Tablero tablero, Jugador rojo, Jugador azul){
+		this.tablero = tablero;
+		this.rojo = rojo;
+		this.azul = azul;
+		turno = new Turno(rojo, azul);
+	}
+	
+	/**
+	 * Nos devuelve el tablero.
+	 * 
+	 * @return tablero
+	 */
+	@Override
+	public Tablero obtenerTablero() {
+		return tablero;
+	}
+
+
+	/**
+	 * Nos devuelve el turno.
+	 * 
+	 * @return turno
+	 */
+	@Override
+	public Turno obtenerTurno() {
+		return turno;
+	}
+
+	/**
+	 * Devuelve true o false según si el movimiento es legal o no.
+	 * 
+	 * @param celda
+	 *            donde se desea colocar
+	 * @return boolean que es true si el movimiento realizado es legal
+	 */
+	@Override
+	public boolean esMovimientoLegal(Celda celda) {
+		boolean legal = true;
+		if (!celda.estaVacia()) {
+			if (!celda.obtenerAtomo().obtenerColor().equals(obtenerTurno().obtenerJugadorConTurno().obtenerColor())) {
+				legal = false;
+			}
+		}else if(!celda.esOcupable()){
+			legal = false;
+		}
+		return legal;
+	}
+
+	/**
+	 * Método que nos dice si ha acabado el juego. El juego se acaba si no hay
+	 * átomos de un jugador en el tablero
+	 * 
+	 * @return true si se ha acabado el juego o false si no se ha acabado
+	 */
+	@Override
+	public boolean estaAcabado() {
+		boolean respuesta = false;
+		if (rojo.estaIniciado() && azul.estaIniciado()) {
+			int n_a = 0, n_r = 0;
+			n_a = tablero.contarAtomosDeColor(azul.obtenerColor());
+			n_r = tablero.contarAtomosDeColor(rojo.obtenerColor());
+			if (n_a == 0 || n_r == 0) {
+				respuesta = true;
+			}
+		}
+		return respuesta;
+	}
+
+	
+	/**
+	 * Comprueba si el tablero está acabado y de quien son los atomos del
+	 * tablero.
+	 * 
+	 * @return jugador ganador
+	 */
+	@Override
+	public Jugador obtenerGanador() {
+		if (estaAcabado()) {
+			if (tablero.contarAtomosDeColor(azul.obtenerColor()) > 0) {
+				return azul;
+			} else {
+				return rojo;
+			}
+		}
+
+		return null;
+	}
+	
+	/**
+	 * Función que cambia el turno.
+	 */
+	@Override
+	public void cambiarTurno(){
+		turno.cambiarTurno();
+	}
+	
+
+}

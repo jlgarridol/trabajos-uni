@@ -1,0 +1,68 @@
+class abstract A implements I{
+
+	private int i;
+	protected int j;
+	public A(int i, int j){
+		this.i = i;
+		this.j = j;
+	}
+	public int consultarI(){
+		return i;
+	}
+}
+
+interface I {
+	void o();
+}
+
+interface J {
+	void p();
+	default void o(){
+		System.out.println("o en J");
+	}
+}
+
+class B extends A implements J {
+	public B(int i, int j){
+		super(i*i,j*j);
+	}
+	@Override
+	public void o(){
+		j = j * consultarI();
+	}
+	@Override
+	public void p(){
+		j += consultarI();
+	}
+}
+
+class C implements I, J{
+	
+	private static int k;
+	
+	public C(int i,int j){
+		k = i * j;
+	}
+	@Override
+	public void p(){
+		System.out.println("p en C "+k);
+	}
+	@Override
+	public void o(){
+		System.out.println("o en C " +k);
+	}
+	public static void consultarK(){
+		System.out.println(k);
+	}
+}
+class Main{
+	public static void main(String[] args){
+		A a1 = new B(2,3);
+		a1.o();
+		//a1.p();
+		System.out.println(a1.consultarI());
+		System.out.println(a1.j);
+		I i1 = a1;
+		I i2 = new 
+	}
+}

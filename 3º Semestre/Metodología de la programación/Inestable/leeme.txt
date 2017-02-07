@@ -1,0 +1,9 @@
+Alumnos:
+	José Luis Garrido Labrador
+	José Miguel Ramíres Sanz
+Consideraciones:
+	Ya que el juego comprueba si todas las explosiones han terminado para comprobar el ganador puede provocarse un 
+desbordamiento de la pila con explosiones que producen las mismas explosiones continuamente.
+	En la clase juego.textui.Inestable se ha considerado que si se han dado 2 nombres y no las dimensiones del tablero no se corta 
+la ejecución sino que se crea un tablero de 5x5 a diferencia de juego.gui.Inestable que necesita de los 4 argumentos sino se da 
+alguno.

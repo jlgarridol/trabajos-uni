@@ -1,0 +1,48 @@
+package juego.modelo;
+
+/**
+ * Clase con un tableros sin esquinas ocupables.
+ * 
+ * @author José Miguel Ramírez Sanz
+ * @author José Luis Garrido Labrador
+ * @since 1.0
+ * @version 2.0
+ */
+public class TableroEspecial extends Tablero {
+
+	/**
+	 * Genera un tablero con esquinas no ocupables.
+	 * 
+	 * @param filas
+	 *            dimension de las filas
+	 * @param columnas
+	 *            dimension de las columnas
+	 */
+	public TableroEspecial(int filas, int columnas) {
+		super(filas, columnas);
+		
+		this.obtenerMatriz().get(0).set(0, new Celda(0, 0, false));
+		this.obtenerMatriz().get(0).set(columnas - 1, new Celda(0, columnas - 1, false));
+		this.obtenerMatriz().get(filas - 1).set(0, new Celda(filas - 1, 0, false));
+		this.obtenerMatriz().get(filas - 1).set(columnas - 1, new Celda(filas - 1, columnas - 1, false));
+	
+//		for(int i = 0;i<filas;i++){
+//			for(int j = 0; j< columnas;j+=2){
+//				if(i!=2){
+//					this.obtenerMatriz().get(i).set(j, new Celda(i,j,false));
+//				}
+//			}
+//		}
+		
+//		/**/
+//		this.obtenerMatriz().get(2).set(2, new Celda(2,2,false));
+//		this.obtenerMatriz().get(2).set(3, new Celda(2,3,false));
+//		this.obtenerMatriz().get(3).set(2, new Celda(3,2,false));
+//		this.obtenerMatriz().get(3).set(3, new Celda(3,3,false));
+//		this.obtenerMatriz().get(0).set(2, new Celda(0,2,false));
+//		this.obtenerMatriz().get(1).set(2, new Celda(1,2,false));
+//		this.obtenerMatriz().get(3).set(2, new Celda(3,2,false));
+//		this.obtenerMatriz().get(4).set(2, new Celda(4,2,false));
+	}
+
+}

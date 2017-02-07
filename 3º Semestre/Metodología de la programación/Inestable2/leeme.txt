@@ -1,0 +1,21 @@
+Práctica Obligatoria 2 - Inestable
+====
+###Versión 2.0
+
+Descripción
+----
+Juego de tablero para dos jugadores para comprender e implementar programas en POO 
+
+Autores
+----
+Ramírez Sanz José Miguel
+Garrido Labrador José Luis
+
+Profesor
+----
+Raúl Marticorena Sánchez
+
+Consideraciones
+----
+El árbitro ArbitroInestable puede provocar un desbordamiento de pila en situaciones de explosiones que se retreoalimentan
+
