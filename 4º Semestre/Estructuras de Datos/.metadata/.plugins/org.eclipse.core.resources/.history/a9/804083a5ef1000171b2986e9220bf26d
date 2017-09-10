@@ -1,0 +1,273 @@
+package es.ubu.inf.edat.pr05;
+
+import java.util.AbstractQueue;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+/**
+ * Implementación de una cola mixta.
+ * 
+ * @author José Luis Garrido Labrador
+ * @author José Miguel Ramírez Sanz
+ * @param <E> Tipo genérico para el uso de la cola
+ */
+public class ColaMixta<E extends Cloneable> extends AbstractQueue<E> {
+
+	/**
+	 * Dimensión del nodo.
+	 */
+	private int dim;
+	/**
+	 * Cantidad de elementos guardados en la cola.
+	 */
+	private int size;
+
+	/**
+	 * Clase con el nodo de la cola mixta.
+	 * 
+	 * @author José Luis Garrido Labrador
+	 * @author José Miguel Ramírez Sanz
+	 * @param <T> Tipo genérico del nodo
+	 */
+	private class NodoMixto<T extends Cloneable> {
+		/**
+		 * Siguiente nodo.
+		 */
+		private NodoMixto<T> sig;
+		/**
+		 * Array con los elementos del nodo.
+		 */
+		private ArrayList<T> cont;
+
+		/**
+		 * Creación del nodo.
+		 * 
+		 * @param dim dimensión del array del nodo
+		 */
+		public NodoMixto(int dim) {
+			cont = new ArrayList<T>(dim);
+		}
+
+		/**
+		 * Obtener el siguiente nodo.
+		 * 
+		 * @return el nodo siguiente
+		 */
+		public NodoMixto<T> getSig() {
+			return sig;
+		}
+
+		/**
+		 * Determina cual es el siguiente nodo.
+		 * 
+		 * @param sig establece el nodo
+		 */
+		public void setSig(NodoMixto<T> sig) {
+			this.sig = sig;
+		}
+
+		/**
+		 * Obtiene el array de elementos.
+		 * 
+		 * @return
+		 */
+		public ArrayList<T> getCont() {
+			return cont;
+		}
+	}
+
+	/**
+	 * Nodo primero.
+	 */
+	private NodoMixto<E> ini;
+	/**
+	 * Nodo último.
+	 */
+	private NodoMixto<E> fin;
+
+	/**
+	 * Crea una cola con la dimensión pasada para cada nodo.
+	 * 
+	 * @param dim dimensión de cada nodo
+	 */
+	public ColaMixta(int dim) {
+		this.dim = dim;
+		ini = new NodoMixto<E>(dim);
+		fin = ini;
+	}
+	
+	/**
+	 * Crea una cola cuyo nodo será de tres.
+	 */
+	public ColaMixta(){
+		this(3);
+	}
+
+	/**
+	 * Introduce al final de la cola un elemento pasado por parámetro.
+	 * 
+	 * @param arg0 elemento a meter
+	 * @return true si va bien, false nunca
+	 */
+	@Override
+	public boolean offer(E arg0) {
+		E argu = (E) arg0.clone();
+		if (fin.getCont().size() == dim) {
+			NodoMixto<E> temp = new NodoMixto<>(dim);
+			fin.setSig(temp);
+			fin = temp;
+		}
+		fin.getCont().add(arg0);
+		size++;
+		if(!peek(size-1).equals(argu)){
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Muestra el elemento primero de la cola.
+	 * 
+	 * @return elemento primero o nulo si no hay ninguno
+	 */
+	@Override
+	public E peek() {
+		try {
+			return ini.getCont().get(0);
+		} catch (IndexOutOfBoundsException ex) {
+			return null;
+		}
+	}
+
+	/**
+	 * Muestra un elemento con el índice de la cola.
+	 * 
+	 * @param num índice del elemento que queremos obtener
+	 * @return elemento cuyo índice sea el pasado
+	 * @throws NoSuchElementException si el índice está fuera de los límites de la cola
+	 */
+	public E peek(int num) throws NoSuchElementException{
+		int i = 0;
+		Iterator<E> it = this.iterator();
+		while (it.hasNext()) {
+			if (i == num) {
+				return it.next();
+			} else {
+				i++;
+				it.next();
+			}
+		}
+		throw new NoSuchElementException();
+	}
+
+	/**
+	 * Saca de la cola el primer elemento.
+	 * 
+	 * @return El elemento primero
+	 */
+	@Override
+	public E poll() {
+		E temp;
+		temp = ini.getCont().get(0);
+		ini.getCont().remove(0);
+		size--;
+		if (ini.getCont().size() == 0) {
+			ini = ini.getSig();
+		}
+		return temp;
+	}
+
+	/**
+	 * Vacia la cola.
+	 */
+	@Override
+	public void clear() {
+		ini = new NodoMixto<E>(dim);
+		fin = ini;
+		size = 0;
+	}
+
+	/**
+	 * Devuelve el tamaño de la cola.
+	 * 
+	 * @return entero con el tamaño
+	 */
+	@Override
+	public int size() {
+		return size;
+	}
+
+	/**
+	 * Devuelve un iterador de la cola.
+	 * 
+	 * @return iterador
+	 */
+	@Override
+	public Iterator<E> iterator() {
+		return new IteratorCola<E>();
+	}
+
+	/**
+	 * Clase del iterador de la cola mixta.
+	 * 
+	 * @author José Luis Garrido Labrador
+	 * @author José Miguel Ramírez Sanz
+	 * @param <T> tipo genérico del iterador
+	 */
+	protected class IteratorCola<T extends Cloneable> implements Iterator<T> {
+
+		/**
+		 * Índice de la cola.
+		 */
+		private int indice = -1;
+		/**
+		 * Número de devuelto.
+		 */
+		private int devueltos;
+		/**
+		 * Elementos del iterador.
+		 */
+		private int elementos = size();
+		/**
+		 * nodo actual del iterador.
+		 */
+		@SuppressWarnings("unchecked")
+		private ColaMixta<T>.NodoMixto<T> nodo = (ColaMixta<T>.NodoMixto<T>) ini;
+
+		/**
+		 * Comprueba si hay más elementos.
+		 * 
+		 * @return true si hay más, false si no
+		 */
+		@Override
+		public boolean hasNext() {
+			if (devueltos == elementos) {
+				return false;
+			}
+			return true;
+		}
+
+		/**
+		 * Devuelve el siguiente elemento.
+		 * 
+		 * @throws NoSuchElementException si no hay más
+		 * @return siguiente elemento
+		 */
+		@Override
+		public T next() {
+			T temp;
+			indice++;
+			if (!hasNext()) {
+				throw new NoSuchElementException();
+			}
+			temp = nodo.getCont().get(indice);
+			devueltos++;
+			if (indice == dim - 1) {
+				indice = -1;
+				nodo = nodo.getSig();
+			}
+			return temp;
+		}
+	}
+}

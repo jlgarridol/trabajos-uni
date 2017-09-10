@@ -1,0 +1,97 @@
+package es.ubu.inf.edat.pr_03;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import es.ubu.inf.edat.pr_03.util.IntegerSortUtils;
+
+public class AlgoritmosOrdenacion {
+	List<Integer> elementos;
+	
+	public AlgoritmosOrdenacion (List<Integer> elementos){
+		this.elementos = elementos;
+	}
+
+	public List<Integer> resultadoMetodoInterno(){
+		List<Integer> resultado = new LinkedList<Integer>();
+		resultado.addAll(elementos);
+		Collections.sort(resultado);
+		return (resultado);
+	}
+
+	public List<Integer> resultadoMetodoA(){
+		Integer[] resultado;
+		resultado = (Integer[]) this.elementos.toArray();
+<<<<<<< HEAD
+		
+		// M�todo A
+
+=======
+		resultado=mergersort(resultado);
+>>>>>>> c0cff5a1affd75a4a57124efd2ff4d1114fe8d6d
+		return Arrays.asList(resultado);
+	}
+		
+		
+	public Integer[] mergersort(Integer[] resultado){
+		if (resultado.length == 1){
+			return resultado;
+		}else{
+			int pmedio = resultado.length/2;
+			Integer[] izquierda = new Integer[pmedio];
+			Integer[] derecha = new Integer[resultado.length - pmedio];
+			for(int i=0;i<pmedio;i++){
+				izquierda[i]=resultado[i];
+			}
+			for(int i=0;i<(resultado.length - pmedio);i++){
+				derecha[i]=resultado[pmedio+i];
+			}
+			izquierda = mergersort(izquierda);
+			derecha = mergersort(derecha);
+			if(izquierda[izquierda.length - 1] <= derecha[0]){
+				Integer[] izquierda1 = new Integer[izquierda.length + 1];
+				for(int i=0; i<izquierda.length; i++){
+					izquierda1[i]=izquierda[i];
+				}
+				izquierda1[izquierda1.length]= derecha[0];
+				izquierda = izquierda1;
+				return izquierda1;
+			}
+			resultado = merge(izquierda, derecha);
+			return resultado;
+		}
+	}
+
+
+
+	/**
+	 * Ordena la lista de elementos bajo el algoritmo de rangos.
+	 * 
+	 * @return Lista ordenada
+	 */
+	public List<Integer> resultadoMetodoB(){
+		Integer[] resultado;
+		resultado = (Integer[]) this.elementos.toArray();
+		Integer[] rangos = new Integer[resultado.length];
+		for(int i=0; i<resultado.length;i++){
+			int rank=0;
+			for(int j=0;j<resultado.length;j++){
+				if(i!=j){
+					if(resultado[i].compareTo(resultado[j])>0 || resultado[i].compareTo(resultado[j])==0 && j>i){
+						rank++;
+					}
+				}				
+			}
+			rangos[rank]=resultado[i];
+		}
+		
+<<<<<<< HEAD
+		return Arrays.asList(rangos);
+=======
+		// M�todo B
+	
+		return Arrays.asList(resultado);
+>>>>>>> c0cff5a1affd75a4a57124efd2ff4d1114fe8d6d
+	}
+}

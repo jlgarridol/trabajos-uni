@@ -1,0 +1,16 @@
+cssCommentColor=\#74715E
+cssCommentItalic=true
+cssFontFaceColor=\#F92772
+cssImportColor=\#F92772
+cssMediaColor=\#F92772
+cssNamespaceColor=\#FFFFFF
+cssPropertyNameBold=false
+cssPropertyNameColor=\#66D9EE
+cssPropertyValueColor=\#E6DA74
+cssSelectorBold=false
+cssSelectorColor=\#FFFFFF
+cssStringColor=\#E6DA74
+cssSymbolColor=\#F92772
+cssTextColor=\#FFFFFF
+eclipse.preferences.version=1
+overriddenByCSS=,cssSelectorColor,cssImportColor,cssFontFaceColor,cssCommentColor,cssTextColor,cssStringColor,cssCommentItalic,cssSymbolColor,cssNamespaceColor,cssPropertyNameColor,cssPropertyValueColor,cssMediaColor,cssSelectorBold,cssPropertyNameBold,

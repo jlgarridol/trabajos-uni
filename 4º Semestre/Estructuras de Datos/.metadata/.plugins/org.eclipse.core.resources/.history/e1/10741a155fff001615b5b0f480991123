@@ -1,0 +1,32 @@
+package es.ubu.inf.edat.pr04.g1;
+
+import java.time.*;
+import java.util.*;
+
+public class SeparadorFechas {
+
+	public static Deque<List<LocalDateTime>> separaFechas(List<LocalDateTime> listaFechas, Duration maxSeparacion) {
+		Deque<List<LocalDateTime>> d = new LinkedList<>();
+		Iterator<LocalDateTime> it = listaFechas.iterator();
+		LocalDateTime actual = null, next = null;
+		List<LocalDateTime> listPointer = new LinkedList<>();
+		if (it.hasNext()) {
+			actual = it.next();
+			listPointer.add(actual);
+		}
+		while (it.hasNext()) {
+			next = it.next();
+			if (maxSeparacion.compareTo(Duration.between(actual, next)) < 0) {
+				if (listPointer.size() > 1) {
+					d.offerFirst(listPointer);
+				}
+				listPointer = new LinkedList<>();
+			}
+			listPointer.add(next);
+			actual=next;
+		}
+
+		return d;
+	}
+
+}

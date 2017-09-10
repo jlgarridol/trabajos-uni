@@ -1,0 +1,33 @@
+package uno;
+
+import java.util.List;
+import java.util.Stack;
+
+public class Arbol<E> {
+	
+	private int size;
+	private Nodo<E> raiz;
+	
+	private class Nodo<T> {
+		Nodo<T> der, izq;
+		T elemento;
+		
+		public Nodo<T> getDer(){ return this.der; }
+		public Nodo<T> getIzq(){ return this.izq; }
+		public T getDato() { return this.elemento; }
+	}
+	
+	public List<E> nodosHoja() {
+		
+	}
+	
+	private Nodo<E>[] nodosToArray(){
+		Nodo[] nodos = new Nodo[size];
+		Stack<Nodo> pilaNodos = new Stack<>();
+		Stack<Boolean> lado = new Stack<>();
+		pilaNodos.add(raiz);
+		lado.add(false);
+		
+	} 
+
+}

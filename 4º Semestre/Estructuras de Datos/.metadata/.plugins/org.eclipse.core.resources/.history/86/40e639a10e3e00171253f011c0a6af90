@@ -1,0 +1,22 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GestorRutas {
+
+	Map<String,String> tramos;
+	
+	public GestorRutas(){
+		tramos = new HashMap<>();
+	}
+	
+	public GestorRutas(Map<String,String> rutas){
+		this.tramos = rutas;
+	}
+	
+	public void insercionTramos(String[] paradas){
+		String origen = paradas[0];
+		
+	}
+	
+}

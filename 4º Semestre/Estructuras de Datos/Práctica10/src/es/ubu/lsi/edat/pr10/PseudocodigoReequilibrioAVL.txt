@@ -1,0 +1,96 @@
+ReequilibrioAVL
+---------------
+
+E: elemento raiz, entero altura_derecha, altura izquierda
+S: elemento raiz, entero altura
+
+
+  factor_equilibrio = altura_derecha - altura_izquierda
+
+  SI (raiz.fact_equi = 2)
+
+     SI (raiz.derecho.fact_equi = 1)
+
+        raiz, altura_derecha <- RotacionSimpleIzquierda ( raiz )
+
+     SI_NO SI (raiz.derecho.fact_equi = -1)
+
+        raiz, altura_derecha <- RotacionCompuestaDcha-Izq ( raiz )
+
+     FIN_SI
+
+     factor_equilibrio = 0
+
+  SI_NO SI (raiz.fact_equi = -2)
+
+     SI (raiz.derecho.fact_equi = -1)
+
+        raiz, altura_izquierda <- RotacionSimpleDerecha ( raiz )
+
+     SI_NO SI (raiz.derecho.fact_equi = 1)
+
+        raiz, altura_izquierda <- RotacionCompuestaIzq-Dcha ( raiz )
+
+     FIN_SI
+
+     factor_equilibrio = 0
+
+  FIN_SI
+
+      
+RotacionSimpleIzquierda (raiz.fact_equi = 2 e raiz.derecho.fact_equi = 1)
+-----------------------
+
+E: elemento raiz (del subarbol a equilibrar)
+S: elemento raiz (del subarbol modificado), entero altura
+Local: nueva_raiz
+
+  nueva_raiz <- raiz.derecha
+  raiz.derecha <- nueva_raiz.izquierda
+  nueva_raiz.izquierda <- raiz
+
+  altura <- maximo ( nueva_raiz.derecha.altura, raiz.izquierda.altura ) + 1
+
+  devuelve nueva_raiz, altura
+
+
+RotacionSimpleDerecha (raiz.fact_equi = -2 e raiz.derecho.fact_equi = -1)
+---------------------
+
+E: elemento raiz (del subarbol a equilibrar)
+S: elemento raiz (del subarbol modificado), entero altura
+Local: nueva_raiz
+
+  nueva_raiz <- raiz.izquierda
+  raiz.izquierda <- nueva_raiz.derecha
+  nueva_raiz.derecha <- raiz
+
+  altura <- maximo ( nueva_raiz.izquierda.altura, raiz.derecha.altura ) + 1
+
+  devuelve nueva_raiz, altura
+
+
+RotacionCompuestaIzq-Dcha (raiz.fact_equi = -2 e raiz.derecho.fact_equi = 1)
+-------------------------
+
+E: elemento raiz (del subarbol a equilibrar)
+S: elemento raiz (del subarbol modificado), entero altura
+Local: nueva_raiz
+
+  raiz.izquierda, altura <- RotacionSimpleIzquierda ( raiz.izquierda )
+  nueva_raiz, altura <- RotacionSimpleDerecha ( raiz )
+  devuelve nueva_raiz, altura
+  
+
+RotacionCompuestaDcha-Izq (raiz.fact_equi = 2 e raiz.derecho.fact_equi = -1)
+-------------------------
+
+E: elemento raiz (del subarbol a equilibrar)
+S: elemento raiz (del subarbol modificado), entero altura
+Local: nueva_raiz
+
+  raiz.derecha, altura <- RotacionSimpleDerecha ( raiz.derecha )
+  nueva_raiz, altura <- RotacionSimpleIzquierda ( raiz )
+
+  devuelve nueva_raiz, altura
+

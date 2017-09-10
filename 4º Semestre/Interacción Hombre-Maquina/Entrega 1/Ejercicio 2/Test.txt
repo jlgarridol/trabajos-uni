@@ -1,0 +1,19 @@
+Preguntamos a usurios (entre ellos trabajadores de la zona O.R.A.) su opinión sobre la usabilidad de la interfaz de la aplicación:
+
+1. ¿Le parecería fácil de usar la aplicación?
+	Si ++
+	No
+	NSNC
+
+2. ¿Le gusta el diseño visual de la aplicación?
+	Si ++
+	No
+	NSNC
+
+3. Si mañana le cambian la aplicación por está, ¿sabría manejarla?
+	Si +
+	No
+	NSNC +
+
+4. ¿Qué cambiaría a la aplicación para que se adaptase más a su trabajo?
+Nada

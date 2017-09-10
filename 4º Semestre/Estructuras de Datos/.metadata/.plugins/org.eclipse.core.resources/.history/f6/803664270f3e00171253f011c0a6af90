@@ -1,0 +1,46 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GestorRutas {
+
+	Map<Ruta,List<Tramo>> ruta;
+	
+	private class Tramo {
+		String start;
+		String end;
+		
+		public Tramo(String start, String end){
+			this.start = start;
+			this.end = end;
+		}
+	}
+	
+	private class Ruta {
+		String origen;
+		String destino;
+		
+		public Ruta(String origen, String destino){
+			this.origen = origen;
+			this.destino = destino;
+		}
+		
+		@Override
+		public int toHash(){
+			
+		}
+	}
+	
+	public GestorRutas(){
+		ruta = new HashMap<>();
+	}
+	
+	
+	public void insercionTramos(String[] paradas){
+		assert paradas.length >= 2 : "Se necesita al menos un tramo";
+		Ruta aIncertar = new Ruta(paradas[0],paradas[1]);
+		if(paradas.length == 2)
+			ruta.put(aIncertar, value)
+	}
+	
+}

@@ -1,0 +1,16 @@
+html {
+    font-family: sans-serif;
+}
+
+h3 {
+    text-align: center;
+    width:33.33%;
+    margin: 20px auto;
+    font-size: 1.5em;
+}
+
+pre{
+    width: 90%;
+    margin: 0 auto;
+    line-height: 1.5;
+}

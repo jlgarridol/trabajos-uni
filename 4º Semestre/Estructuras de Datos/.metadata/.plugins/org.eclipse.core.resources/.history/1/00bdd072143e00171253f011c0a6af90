@@ -1,0 +1,19 @@
+import java.util.List;
+import java.util.Stack;
+
+public class ArbolBinario<E> {
+
+	Nodo raiz;
+	
+	private class Nodo {
+		E dato;
+		Nodo hijoDer;
+		Nodo hijoIzq;
+	}
+	
+	List<E> nodosHoja(){
+		Stack<Nodo> pilaN = new Stack<>();
+		Stack<Boolean> lado = new Stack<>();
+	}
+	
+}

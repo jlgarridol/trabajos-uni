@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;es.ubu.inf.edat.pr_03.util.IntegerListGeneration&apos; to &apos;IntegerSortUtils&apos;&#x0A;- Original project: &apos;Práctica3&apos;&#x0A;- Original element: &apos;es.ubu.inf.edat.pr_03.util.IntegerListGeneration&apos;&#x0A;- Renamed element: &apos;es.ubu.inf.edat.pr_03.util.IntegerSortUtils&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;IntegerListGeneration&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;es.ubu.inf.edat.pr_03.util{IntegerListGeneration.java[IntegerListGeneration" matchStrategy="1" name="IntegerSortUtils" qualified="false" references="true" similarDeclarations="false" stamp="1487949225640" textual="false" version="1.0"/>
+</session>

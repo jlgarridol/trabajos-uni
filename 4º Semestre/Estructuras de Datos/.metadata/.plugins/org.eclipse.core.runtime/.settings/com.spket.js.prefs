@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+java_doc_default=116,113,94
+java_doc_keyword=217,229,119
+java_doc_link=207,191,173
+java_doc_tag=207,191,173
+js_default=255,255,255
+js_keyword=249,39,114
+js_keyword_return=249,39,114
+js_ml_comment=116,113,94
+js_operator=249,39,114
+js_regexp=230,218,116
+js_reserved=249,39,114
+js_sl_comment=116,113,94
+js_ssi=167,236,33
+js_string=230,218,116
+js_task_tag=207,191,173
+overriddenByCSS=,java_doc_keyword,js_default,java_doc_default,java_doc_link,js_keyword_return,js_operator,js_string,js_regexp,js_reserved,js_ml_comment,js_ssi,java_doc_tag,js_sl_comment,js_task_tag,js_keyword,

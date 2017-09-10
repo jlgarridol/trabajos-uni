@@ -1,0 +1,14 @@
+Primero pedimos a los usuarios que busquen una serie de información de varios perosnas de la página y luego le pasamos el siguiente test:
+
+1. Valora del 1 al 10 la dificultad que has tenido (Siendo 1 muy dificil y 10 muy fácil) para encontrar la información que le hemos solicitado.
+9, 9, 8, 10
+
+2. Valora del 1 al 10 la comodidad que has experimentado (Siendo 1 muy incomodo y 10 muy comodo) la navegación por la página.
+10, 10, 10, 8
+
+3. Valora del 1 al 10 como te ha ayudado (Siendo 1 no me ha ayudado nada y 10 me ha ayudado mucho) el aspecto visual de la página para entenderla.
+10, 5, 7, 9
+
+4.¿Qué cambiarías a la página para que se adaptase mejor a sus necesidades?
+Posición vertical. un buscador. un buscador. Posición vertical
+

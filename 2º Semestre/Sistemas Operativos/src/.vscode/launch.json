@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Bash-Debug (type in script name)",
+            "type": "bashdb",
+            "request": "launch",
+            "scriptPath": "${workspaceRoot}/${command:AskForScriptName}",
+            "commandLineArguments": "",
+            "windows": {
+                "bashPath": "C:\\Windows\\sysnative\\bash.exe"
+            },
+            "linux": {
+                "bashPath": "bash"
+            },
+            "osx": {
+                "bashPath": "bash"
+            }
+        }
+    ]
+}

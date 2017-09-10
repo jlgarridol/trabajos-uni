@@ -1,0 +1,47 @@
+package es.ubu.inf.edat.pr04.g1;
+
+import java.time.*;
+import java.util.*;
+
+/**
+ * Clase para separar eventos.
+ * 
+ * @author José Luis Garrido Labrador
+ * @author José Miguel Ramírez Sanz
+ */
+public class SeparadorFechas {
+
+	/**
+	 * Método para separar eventos.
+	 * 
+	 * @param listaFechas lista de fechas para separarlas en eventos
+	 * @param maxSeparacion maximo tiempo entre fechas para eventos
+	 * @return Cola doble de eventos (lista de fechas de más de una)
+	 */
+	public static Deque<List<LocalDateTime>> separaFechas(List<LocalDateTime> listaFechas, Duration maxSeparacion) {
+		Deque<List<LocalDateTime>> d = new LinkedList<>();
+		Iterator<LocalDateTime> it = listaFechas.iterator();
+		LocalDateTime actual = null, next = null;
+		List<LocalDateTime> listPointer = new LinkedList<>();
+		if (it.hasNext()) {
+			actual = it.next();
+			listPointer.add(actual);
+		}
+		while (it.hasNext()) {
+			next = it.next();
+			if (maxSeparacion.compareTo(Duration.between(actual, next)) == -1) {
+				if (listPointer.size() > 1) {
+					d.offerFirst(listPointer);
+				}
+				listPointer = new LinkedList<>();
+			}
+			listPointer.add(next);
+			actual=next;
+		}
+		if(listPointer.size() > 1)
+			d.offerFirst(listPointer);
+		
+		return d;
+	}
+
+}

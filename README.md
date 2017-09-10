@@ -6,8 +6,9 @@ Responsable
 
 Compañeros
 -
-* Luis Pedrosa Ruiz
 * José Miguel Ramírez Sanz
+* Eduardo Zambrano León
+* Luis Pedrosa Ruiz
 * Luis Miguel Cabrejas Arce
 
 Aportes de terceros

@@ -1,0 +1,200 @@
+package es.ubu.lsi.edat.pr10;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class ArbolAVL<E> extends ArbolBB<E> {
+	public int altura(E elemento) {
+		List<Nodo> lista = buscar(super.raiz, elemento);
+		Nodo supp = lista.get(0);
+		if (supp == null) {
+			return -1;
+		}
+		return alturaR(supp);
+	}
+
+	private int alturaR(Nodo nodo) {
+		int alturaD = 0;
+		int alturaI = 0;
+		if (nodo.getDer() == null && nodo.getIzq() == null) {
+			return 0;
+		}
+		if (nodo.getDer() == null) {
+			alturaI = 1 + alturaR(nodo.getIzq());
+		} else if (nodo.getIzq() == null) {
+			alturaD = 1 + alturaR(nodo.getDer());
+		} else {
+			alturaI = 1 + alturaR(nodo.getIzq());
+			alturaD = 1 + alturaR(nodo.getDer());
+		}
+		if (alturaD > alturaI) {
+			return alturaD;
+		}
+		return alturaI;
+	}
+
+	public int profundidad(E elemento) {
+		List<Nodo> lista = buscar(super.raiz, elemento);
+		Nodo supp = lista.get(0);
+		if (supp == null) {
+			return -1;
+		}
+		if (lista.get(1) == null) {
+			return 0;
+		}
+		return 1 + profundidad(lista.get(1).getDato());
+	}
+
+	@Override
+	public boolean add(E elemento) {
+		if (!super.add(elemento)) {
+			return false;
+		}
+		int supp = comprobarAVL(super.raiz);
+		if (supp > 1 || supp < -1) {
+			reequilibrioAVL(encontrarDes(super.raiz));
+		}
+		return true;
+	}
+
+	private Nodo encontrarDes(Nodo nodo) {
+		int fac_der = comprobarAVL(nodo.getDer());
+		int fac_izq = comprobarAVL(nodo.getIzq());
+		if (Math.abs(fac_der) >= 2) {
+			return encontrarDes(nodo.getDer());
+		} else if (Math.abs(fac_izq) >= 2) {
+			return encontrarDes(nodo.getIzq());
+		}
+		return nodo;
+	}
+
+	private int comprobarAVL(Nodo nodo) {
+		int alturaD;
+		int alturaI;
+		if (nodo == null) {
+			return 0;
+		}
+
+		if (nodo.getDer() == null) {
+			alturaD = 0;
+		} else {
+			alturaD = 1 + altura(nodo.getDer().getDato());
+		}
+		if (nodo.getIzq() == null) {
+			alturaI = 0;
+		} else {
+			alturaI = 1 + altura(nodo.getIzq().getDato());
+		}
+		return alturaD - alturaI;
+	}
+
+	private void reequilibrioAVL(Nodo nodo) {
+		int factor, derecho, izquierdo;
+		factor = this.comprobarAVL(nodo);
+		derecho = this.comprobarAVL(nodo.getDer());
+		izquierdo = this.comprobarAVL(nodo.getIzq());
+		switch (factor) {
+		case 2:
+			switch (derecho) {
+			case 1:
+				rotacionIzquierda(nodo);
+				break;
+			case -1:
+				rotacionDerechaIzquierda(nodo);
+				break;
+			}
+			break;
+		case -2:
+			switch (izquierdo) {
+			case -1:
+				rotacionDerecha(nodo);
+				break;
+			case 1:
+				rotacionIzquierdaDerecha(nodo);
+				break;
+			}
+			break;
+		}
+	}
+
+	private void rotacionIzquierda(Nodo nodo) {
+		Nodo raizLocal;
+		raizLocal = nodo.getDer();
+		nodo.setDer(raizLocal.getIzq());
+		raizLocal.setIzq(nodo);
+		Nodo padre = buscar(super.raiz, nodo.getDato()).get(1);
+		if (padre == null)
+			super.raiz = raizLocal;
+		else if (padre.getDer() == nodo)
+			padre.setDer(raizLocal);
+		else
+			padre.setIzq(raizLocal);
+	}
+
+	private void rotacionDerecha(Nodo nodo) {
+		Nodo raizLocal;
+		raizLocal = nodo.getIzq();
+		nodo.setIzq(raizLocal.getDer());
+		raizLocal.setDer(nodo);
+		Nodo padre = buscar(super.raiz, nodo.getDato()).get(1);
+		if (padre == null)
+			super.raiz = raizLocal;
+		else if (padre.getDer() == nodo)
+			padre.setDer(raizLocal);
+		else
+			padre.setIzq(raizLocal);
+	}
+
+	private void rotacionIzquierdaDerecha(Nodo nodo) {
+		rotacionIzquierda(nodo.getIzq());
+		rotacionDerecha(nodo);
+	}
+
+	private void rotacionDerechaIzquierda(Nodo nodo) {
+		rotacionDerecha(nodo.getDer());
+		rotacionIzquierda(nodo);
+	}
+
+	private void tratar(Stack<Integer> veces) {
+		Integer elemento = veces.pop();
+		elemento++;
+		veces.push(elemento);
+	}
+
+	public List<E> preOrden() {
+		List<E> retorno = new ArrayList<>(this.size());
+		Stack<Integer> pila = new Stack<>();
+		Stack<Nodo> pilaNodos = new Stack<>();
+		boolean lado = false;
+		pilaNodos.push(super.raiz);
+		pila.push(1);
+		boolean primeravez=true;
+		while (pilaNodos.peek() != super.raiz || pila.peek() != 3) {
+			primeravez=false;
+			Nodo cabeza = pilaNodos.peek();
+			Integer veces = pila.peek();
+			if (veces == 3) {
+				pila.pop();
+				pilaNodos.pop();
+			} else if (veces == 1) {
+				tratar(pila);
+				retorno.add(cabeza.getDato());
+				cabeza = cabeza.getIzq();
+				if (cabeza != null) {
+					pila.push(1);
+					pilaNodos.push(cabeza);
+				}
+			} else {
+				tratar(pila);
+				cabeza = cabeza.getDer();
+				if (cabeza != null) {
+					pila.push(1);
+					pilaNodos.push(cabeza);
+				}
+			}
+		}
+
+		return retorno;
+	}
+}

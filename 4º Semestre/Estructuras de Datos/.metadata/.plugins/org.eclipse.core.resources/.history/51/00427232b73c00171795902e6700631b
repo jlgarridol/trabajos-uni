@@ -1,0 +1,10 @@
+package uno;
+
+public class Prestamo {
+
+	public String apellidos;
+	public String nombre;
+	public int idRecurso;
+	public Date fecha;
+	
+}

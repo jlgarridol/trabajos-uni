@@ -1,0 +1,30 @@
+RECORRIDO PREORDEN (Iterativo)
+------------------
+
+s <- Stack 							//se instancia una pila (como auxiliar)
+
+push(s,raíz);                       //insertamos el nodo raíz
+MIENTRAS (s <> NULL) HACER
+    p <- pop(s);                     //sacamos un elemento de la pila
+    tratar(p);                      //realizamos operaciones sobre el nodo p
+    SI (D(p) <> NULL)               //preguntamos si p tiene árbol derecho
+         ENTONCES 
+		 s.push(D(p));
+    FIN-SI
+    SI (I(p) <> NULL)               //preguntamos si p tiene árbol izquierdo
+         ENTONCES 
+		 s.push(I(p));
+    FIN-SI
+FIN-MIENTRAS
+
+RECORRIDO INORDEN y POSORDEN (Iterativo)
+----------------------------
+
+Se basan en el anterior: se emplea una pila para llevar la cuenta de los nodos por
+los que se ha pasado. Se debe tener en cuenta en este caso que en el inorden se añade
+el dato a la lista la 2º vez que se extrae de la pila, mientras que en el posorden
+se añade la 3º vez que se extrae. 
+
+Se sugiere emplear por tanto una estructura auxiliar que permita contabilizar cuantas
+veces se ha encontrado un nodo en la pila, para poder saber si se debe pasar su dato
+a la lista a devolver o si se debe volver a guardar en la pila para añadirlo más adelante.

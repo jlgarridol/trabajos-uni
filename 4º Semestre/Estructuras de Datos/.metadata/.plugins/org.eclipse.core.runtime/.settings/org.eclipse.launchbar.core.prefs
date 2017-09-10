@@ -1,0 +1,7 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:EjerciciosPipelinesTest,org.eclipse.launchbar.core.descriptorType.default\:TextoPredictivoTest,org.eclipse.launchbar.core.descriptorType.default\:AlgoritmosOrdenacion_tst,org.eclipse.launchbar.core.descriptorType.default\:TableTest,org.eclipse.launchbar.core.descriptorType.default\:SeparadorFechasTest,org.eclipse.launchbar.core.descriptorType.default\:TestColaMixta,org.eclipse.launchbar.core.descriptorType.default\:GestorMatriculados_Test,org.eclipse.launchbar.core.descriptorType.default\:FiltradoAccesosUnicosTest,org.eclipse.launchbar.core.descriptorType.default\:PlanificadorProcesosTest,org.eclipse.launchbar.core.descriptorType.default\:TestArbolAVL
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:EjerciciosPipelinesTest/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:EjerciciosPipelinesTest/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:TestArbolAVL/activeLaunchMode=run

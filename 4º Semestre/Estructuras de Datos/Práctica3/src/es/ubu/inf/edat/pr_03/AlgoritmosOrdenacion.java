@@ -1,0 +1,172 @@
+package es.ubu.inf.edat.pr_03;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Clase para ordenar listas según 3 metodos diferentes: interno, merge sort y rangos.
+ * 
+ * @author José Luis Garrido Labrador
+ * @author José Miguel Ramírez Sanz
+ *
+ * @param <E> Tipo de dato que extiende de Comparable
+ */
+public class AlgoritmosOrdenacion<E extends Comparable<E>> {
+	List<E> elementos;
+
+	/**
+	 * Constrcutor de la clase.
+	 * 
+	 * @param elementos lista a ordenar
+	 */
+	public AlgoritmosOrdenacion(List<E> elementos) {
+		this.elementos = elementos;
+	}
+
+	/**
+	 * Ordenación por el método interno de java.
+	 * 
+	 * @return lista ordenada
+	 */
+	public List<E> resultadoMetodoInterno() {
+		List<E> resultado = new LinkedList<E>();
+		resultado.addAll(elementos);
+		Collections.sort(resultado);
+		return (resultado);
+	}
+
+	/**
+	 * Ordenación por el método merge sort.
+	 * 
+	 * @return lista ordenada
+	 */
+	@SuppressWarnings("unchecked")
+	public List<E> resultadoMetodoA() {
+		Object[] resultado;
+		resultado = (E[]) this.elementos.toArray();
+		resultado = mergersort(resultado);
+		return (List<E>) Arrays.asList(resultado);
+	}
+
+	/**
+	 * Método que divide el array recursivamente.
+	 * 
+	 * @param resultado array que queremos ordenar
+	 * @return array ordenado
+	 */
+	@SuppressWarnings("unchecked")
+	private Object[] mergersort(Object[] resultado) {
+		if (resultado.length == 1) {
+			return resultado;
+		} else {
+			int pmedio = resultado.length / 2;
+			Object[] izquierda = new Object[pmedio];
+			Object[] derecha = new Object[resultado.length - pmedio];
+			
+			for (int i = 0; i < pmedio; i++) {
+				izquierda[i] = resultado[i];
+			}
+			for (int i = 0; i < (resultado.length - pmedio); i++) {
+				derecha[i] = resultado[pmedio + i];
+			}
+			izquierda = mergersort(izquierda);
+			derecha = mergersort(derecha);
+			if (((E) izquierda[izquierda.length - 1]).compareTo((E)derecha[0])<=0) {
+				Object[] izquierda1 = new Object[izquierda.length + 1];
+				for (int i = 0; i < izquierda.length; i++) {
+					izquierda1[i] = izquierda[i];
+				}
+				izquierda1[izquierda1.length - 1] = derecha[0];
+				izquierda = izquierda1;
+				return izquierda1;
+			}
+			resultado = merge(izquierda, derecha);
+			return resultado;
+		}
+	}
+
+	/**
+	 * Completa el array resultado a partir de los arrays divididos.
+	 * 
+	 * @param izquierda uno de los array divididos
+	 * @param derecha el otro array de la división
+	 * @return array ordenado
+	 */
+	@SuppressWarnings("unchecked")
+	private E[] merge(Object[] izquierda, Object[] derecha) {
+		int posicion = 0;
+		Object[] resultado = new Object[izquierda.length + derecha.length];
+		while (izquierda.length > 0 && derecha.length > 0) {
+			if (((E)izquierda[0]).compareTo((E)derecha[0])<=0) {
+				resultado[0] = izquierda[0];
+				Object[] izquierda2 = new Object[izquierda.length - 1];
+				for (int i = 0; i < izquierda2.length; i++) {
+					izquierda2[i] = izquierda[i + 1];
+				}
+				izquierda = izquierda2;
+			} else {
+				resultado[0] = derecha[0];
+				Object[] derecha2 = new Object[derecha.length - 1];
+				for (int i = 0; i < derecha2.length; i++) {
+					derecha2[i] = derecha[i + 1];
+				}
+				derecha = derecha2;
+			}
+		}
+		boolean salidaFin = false;
+		if (izquierda.length > 0) {
+			for (int i = 0; i < resultado.length && !salidaFin; i++) {
+				if (resultado[i] != null) {
+					posicion++;
+				} else {
+					salidaFin = true;
+				}
+			}
+			for (int i = 0; i < izquierda.length; i++) {
+				resultado[posicion + i] = izquierda[i];
+			}
+		}
+		salidaFin = false;
+		posicion = 0;
+		if (derecha.length > 0) {
+			for (int i = 0; i < resultado.length; i++) {
+				if (resultado[i] != null) {
+					posicion++;
+				} else {
+					salidaFin = true;
+				}
+			}
+			for (int i = 0; i < derecha.length; i++) {
+				resultado[posicion + i] = derecha[i];
+			}
+		}
+		return (E[]) resultado;
+	}
+
+	/**
+	 * Ordena la lista de elementos bajo el algoritmo de rangos.
+	 *
+	 * @return Lista ordenada
+	 */
+	@SuppressWarnings("unchecked")
+	public List<E> resultadoMetodoB() {
+		E[] resultado;
+		resultado = (E[]) this.elementos.toArray();
+		Object[] rangos = new Object[resultado.length];
+		for (int i = 0; i < resultado.length; i++) {
+			int rank = 0;
+			for (int j = 0; j < resultado.length; j++) {
+				if (i != j) {
+					if (resultado[i].compareTo(resultado[j]) > 0
+							|| resultado[i].compareTo(resultado[j]) == 0 && j > i) {
+						rank++;
+					}
+				}
+			}
+			rangos[rank] = resultado[i];
+		}
+		return (List<E>)Arrays.asList(rangos);
+	}
+}

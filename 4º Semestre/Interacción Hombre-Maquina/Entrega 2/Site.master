@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster"%>
+    <% if(!DBPruebas.init) DBPruebas.Init();%>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title><%: Page.Title %></title>
+    <asp:PlaceHolder runat="server">      
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <style type="text/css">
+        #logo {
+            width: 25%;
+            height: 63px;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+            <%--Framework scripts--%>
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
+            <%--Site scripts--%>
+
+        </Scripts>
+    </asp:ScriptManager>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    &nbsp;</p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+                                <% if(DBPruebas.CIA == null){ %>
+                                    <li><a id="loginLink" runat="server" href="~/Account/Login"><asp:Label runat="server" Text="<%$ Resources:Master,Login %>"></asp:Label></a></li>
+                                <%}else{ %>
+                                    <li><a id="A1" runat="server" href="~/Account/Logout"><asp:Label runat="server" Text="<%$ Resources:Master,Logout %>"></asp:Label></a></li>
+                                <%} %>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" />
+                                </a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" />
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li><a runat="server" href="~/"><asp:Label runat="server" Text="<%$ Resources:Master,Start %>"></asp:Label></a></li>
+                        <% if (DBPruebas.CIA != null) {%>
+                        <li><a runat="server" href="~/Profile"><%: DBPruebas.getUsuario().getNombre() %></a></li>
+                        <li><a runat="server" href="~/Cars"><asp:Label runat="server" Text="<%$ Resources:Master,Cars %>"></asp:Label></a></li>
+                        <% } %>
+                        <li><a runat="server" href="~/About"><asp:Label runat="server" Text="<%$ Resources:Master,About %>"></asp:Label></a></li>
+                        <li><a runat="server" href="~/Contact"><asp:Label runat="server" Text="<%$ Resources:Master,Contact %>"></asp:Label></a></li>
+                        <li><a runat="server" href="~/Help"><asp:Label runat="server" Text="<%$ Resources:Master,Help %>"></asp:Label></a></li>
+                    </ul>
+                </nav>
+            </div>
+                    <a runat="server" href="~/"><img id="logo" alt="acme" onerror="this.src='../images/AcmeLogo.png'" src="images/AcmeLogo.png" /></a></div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; <%: DateTime.Now.Year %> ~ Eduardo Zambrano León ~ José Miguel Ramírez Sanz ~ José Luis Garrido Labrador 
+                </p>
+            </div>
+            <div class="float-right">
+                <p>
+                    Interacción Hombre-Máquina ~ Escuela Politécnica Superior ~ Universidad de Burgos
+                </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

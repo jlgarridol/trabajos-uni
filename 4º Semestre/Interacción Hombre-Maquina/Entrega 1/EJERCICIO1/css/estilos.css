@@ -1,0 +1,198 @@
+html {
+    font-family: sans-serif;
+}
+
+.cuerpo > div{
+    /*margin: 0 auto;*/
+}
+
+.cuerpo{
+    padding-top: 170px;
+    padding-bottom: 170px;
+    border-style: solid;
+    border-color: #D8D8D8;
+    border-left-width: 10px;
+    border-right-width: 10px;
+}
+
+a {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+#title{
+    position: fixed;
+    background-color: #D8D8D8;
+    z-index: 200;
+    width: 100%;
+    height: auto;
+}
+
+.name {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+p {
+    display: inline-block;
+}
+
+.cuarto {
+    width: 30%;
+}
+
+.full {
+    width: 74%;
+}
+
+h1, h2, h3, h4, h5, h6, .tinformacion{
+    font-weight: bold;
+}
+
+.tinformacion{
+    width: 18%;
+}
+
+p{
+    line-height: 2;
+}
+
+.informacion{
+    margin: 40px 2.5%;
+    width: 45%;
+    padding-top: 15px;
+    float: left;
+    height: auto;
+    position: relative;
+    overflow: auto;
+}
+#letras {
+    text-align: center;
+    margin-bottom: 5px;
+    clear: both;
+    padding-top: 10px;
+}
+
+#letras pre{
+    margin: 0 auto;
+    z-index: 45;
+}
+
+.ayuda {
+    width: 20px;
+    height: auto;
+    z-index: 46;
+    float: right;
+}
+
+.ayudaimg {
+    width: inherit;
+    height: auto;
+}
+
+.letra {
+    clear: both;
+    width: 100%;
+    font-size: 1.50em;
+    padding-top: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 10px solid #D8D8D8;
+    color: black;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+#title > h1{
+    float: right;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+#title > img{
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: auto;
+    height: 90px;
+}
+.footer{
+    clear: both;
+    background-color: #D8D8D8;
+    /*color: white;*/
+    font-size: 1.25em;
+    height: auto;;
+}
+
+.joselu{
+    float: left;
+    width: 26%;
+    margin-left: 3%;
+    text-align: left;
+}
+
+.josemi{
+    margin: 0 auto;
+    width: 26%;
+    margin-left: 6%;
+    margin-right: 6%;
+    text-align: center;
+}
+
+.edu{
+    float: right;
+    width: 26%;
+    margin-right: 3%;
+    text-align: right;
+}
+
+.contacto{
+    font-weight: bolder;
+    width: 33.333333%;
+    margin: 10px 33.333333%;
+    text-align: center;
+}
+
+#contacto{
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    /*position: relative;
+    left: 50%;*/
+}
+
+a[href^="tel:"]{
+    font-weight: bold;
+
+    font-size:1.25em;
+}
+
+.name{
+    font-size: 1.25em;
+}
+
+.changeMode{
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    z-index: 9999;
+    left: 97%;
+    top:94%;
+}
+
+#simple, #doble{
+    width: inherit;
+    height: inherit;
+
+}
+
+#simple{
+    display: block;
+}
+
+#doble{
+    display: none;
+}

@@ -1,0 +1,7 @@
+package com.joselucross.lab.jorgenavarro;
+
+import java.util.TreeMap;
+
+public class ArbolBase extends TreeMap<K, V> {
+
+}

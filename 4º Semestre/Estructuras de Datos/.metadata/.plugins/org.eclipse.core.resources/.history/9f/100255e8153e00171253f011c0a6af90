@@ -1,0 +1,114 @@
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
+public class ArbolBinario<E> {
+
+	Nodo raiz;
+	
+	private class Nodo {
+		E dato;
+		Nodo hijoDer;
+		Nodo hijoIzq;
+	}
+	
+	List<E> nodosHoja(){
+		List<E> hojas = new LinkedList<>();
+		Stack<Nodo> pilaN = new Stack<>();
+		Stack<Boolean> lado = new Stack<>();
+		pilaN.add(raiz);
+		lado.add(false);
+		while(!pilaN.isEmpty()){
+			Nodo cabeza = pilaN.peek();
+			if(!lado.peek()){ // Hijo izquierdo
+				Nodo izquierdo = cabeza.hijoIzq;
+				if(izquierdo!=null){
+					if(izquierdo.hijoDer == null && izquierdo.hijoIzq == null)
+						hojas.add(izquierdo.dato);
+					else{
+						pilaN.push(izquierdo);
+						lado.push(false);
+					}
+				}else{ //Se cambia de lado
+					Boolean b = lado.pop();
+					b = true;
+					lado.push(b);
+				}
+			}else{ //Hijo derecho
+				Nodo derecho = cabeza.hijoDer;
+				if(derecho!=null){
+					if(derecho.hijoDer == null && derecho.hijoIzq == null)
+						hojas.add(derecho.dato);
+					else{
+						pilaN.push(derecho);
+						lado.push(false);
+					}
+				}else{ //Se extrae el nodo
+					lado.pop();
+					pilaN.pop();
+				}
+			}
+		}
+		return hojas;
+	}
+	
+	List<E> entornoNodo(E dato){
+		List<E> datos = new LinkedList<>();
+		Stack<Nodo> pilaN = new Stack<>();
+		Stack<Boolean> lado = new Stack<>();
+		pilaN.add(raiz);
+		lado.add(false);
+		while(!pilaN.isEmpty()){
+			Nodo cabeza = pilaN.peek();
+			if(!lado.peek()){ // Hijo izquierdo
+				Nodo izquierdo = cabeza.hijoIzq;
+				if(izquierdo!=null){
+					if(izquierdo.dato.equals(dato)){ // Se encontró
+						datos.add(cabeza.dato);
+						if(izquierdo.hijoIzq != null)
+							datos.add(izquierdo.hijoIzq.dato);
+						else
+							datos.add(null);
+							if(izquierdo.hijoDer != null)
+								datos.add(izquierdo.hijoDer.dato);
+							else
+								datos.add(null);
+						return datos;
+					}
+					else{
+						pilaN.push(izquierdo);
+						lado.push(false);
+					}
+				}else{ //Se cambia de lado
+					Boolean b = lado.pop();
+					b = true;
+					lado.push(b);
+				}
+			}else{ //Hijo derecho
+				Nodo derecho = cabeza.hijoDer;
+				if(derecho!=null){
+					if(derecho.dato.equals(dato)){ // Se encontró
+						datos.add(cabeza.dato);
+						if(derecho.hijoIzq != null)
+							datos.add(derecho.hijoIzq.dato);
+						else
+							datos.add(null);
+							if(derecho.hijoDer != null)
+								datos.add(derecho.hijoDer.dato);
+							else
+								datos.add(null);
+						return datos;
+					}
+					else{
+						pilaN.push(derecho);
+						lado.push(false);
+					}
+				}else{ //Se extrae el nodo
+					lado.pop();
+					pilaN.pop();
+				}
+			}
+		}
+	}
+	return datos;	
+}

@@ -1,0 +1,35 @@
+package uno;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Main {
+
+	void listaOrdenadaPrestamos(Collection<Prestamo> prestamos){
+		Set<Prestamo> removeDuplicates = new HashSet<>();
+		removeDuplicates.addAll(prestamos);
+		Set<Prestamo> setImprimir = new TreeSet<>(new Comparator<Prestamo>() {
+			@Override
+			public int compare(Prestamo arg0, Prestamo arg1) {
+				int retorno;
+				retorno = arg0.apellidos.compareTo(arg1.apellidos);
+				if(retorno != 0)
+					return retorno;
+				else
+					retorno = arg0.nombre.compareTo(arg1.nombre);
+				return retorno;
+			}
+		});
+		setImprimir.addAll(removeDuplicates);
+		Iterator<Prestamo> it = setImprimir.iterator();
+		while(it.hasNext()){
+			Prestamo next = it.next();
+			System.out.println(next.apellidos +", "+next.nombre+", "+next.idRecurso+",\n");
+		}
+	}
+	
+}

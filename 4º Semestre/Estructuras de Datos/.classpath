@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Practica1/src"/>
+	<classpathentry kind="src" path="Practica1/tst"/>
+	<classpathentry kind="src" path="Práctica2/src"/>
+	<classpathentry kind="src" path="Práctica2/tst"/>
+	<classpathentry kind="src" path="Práctica3/src"/>
+	<classpathentry kind="src" path="Práctica3/tst"/>
+	<classpathentry kind="src" path="Práctica4/src"/>
+	<classpathentry kind="src" path="Práctica4/tst"/>
+	<classpathentry kind="src" path="Práctica5/src"/>
+	<classpathentry kind="src" path="Práctica5/tst"/>
+	<classpathentry kind="src" path="Práctica6/src"/>
+	<classpathentry kind="src" path="Práctica6/tst"/>
+	<classpathentry kind="src" path="PruebasPersonales/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Practica1/bin"/>
+</classpath>

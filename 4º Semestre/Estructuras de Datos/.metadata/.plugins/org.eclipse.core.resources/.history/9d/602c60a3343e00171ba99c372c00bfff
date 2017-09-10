@@ -1,0 +1,42 @@
+
+public class ListaEnlazada<E> {
+
+	private class Nodo {
+		E dato;
+		Nodo anterior;
+		Nodo siguiente;
+	}
+	
+	private Nodo inicio;
+	private Nodo fin;
+	private int size;
+	
+	void add (int index, E elemento){
+		Nodo nuevo = new Nodo();
+		nuevo.dato = elemento;
+		if (index > size)
+			throw new IndexOutOfBoundsException();
+		if(index==size){
+			nuevo.anterior = fin.anterior;
+			nuevo.siguiente = fin;
+			fin.anterior = nuevo;
+			fin = nuevo;
+		}else if(index==0){
+			
+		}else if(index > size/2){
+			int posicionActual = size-1;
+			Nodo ultimo = fin;
+			for(;posicionActual>0;posicionActual--){
+				if (index==posicionActual){
+					nuevo.siguiente = ultimo;
+					nuevo.anterior = ultimo.anterior;
+					ultimo.anterior.siguiente = nuevo;
+					ultimo.anterior = nuevo;
+					break;
+				}
+			}
+		}
+	}
+	
+	
+}

@@ -1,0 +1,19 @@
+package uno;
+
+import java.util.Date;
+
+public class Prestamo {
+
+	public String apellidos;
+	public String nombre;
+	public int idRecurso;
+	public Date fecha;
+	
+	public Prestamo(String apellidos, String nombre, int idRecurso, Date fecha){
+		this.apellidos = apellidos;
+		this.nombre = nombre;
+		this.idRecurso = idRecurso;
+		this.fecha = fecha;
+	}
+	
+}

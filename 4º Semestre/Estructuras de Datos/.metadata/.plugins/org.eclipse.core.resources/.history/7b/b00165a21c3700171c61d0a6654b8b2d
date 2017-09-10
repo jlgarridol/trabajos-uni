@@ -1,0 +1,79 @@
+package es.ubu.inf.edat.pr10;
+
+import java.util.List;
+import es.ubu.lsi.edat.datos.Proceso;
+
+/**
+ * Clase para la soluciónd el ejercicio planteado en la sesión 11 de prácticas de EDAT.
+ * Se pretende simular un sistema sencillo de planificación de procesos
+ * empleando el algoritmo de SRPT 
+ * 
+ * @author bbaruque
+ *
+ */
+public class PlanificadorProcesos {
+
+	// TODO - Se necesitará contar con una estructura de datos que permita
+	// organizar los procesos a planificar (Lista de Colas de Prioridad)
+	// Se contará con una cola para cada uno de los niveles de prioridad de un proceso,
+	// de manera que los procesos de la misma prioridad se organizan entre sí
+	
+	/**
+	 * Constructor de la clase.
+	 * Es importante asegurarse de que las colas están correctamente iniciadas.
+	 */
+	public PlanificadorProcesos(){
+
+		//TODO - A completar por el alumno
+		
+	}
+
+	/**
+	 * Metodo que permite insertar nuevos procesos en el planificador.
+	 * Se debe asegurar que los procesos se distribuyen en cada cola en 
+	 * funcion de su prioridad.
+	 * 
+	 * @param proc Proceso a introducir en el planificador
+	 * @return numero de procesos incluidos en la misma cola en que se ha insertado el proceso actual 
+	 * (el actual incluido) 
+	 */
+	public int insertaEnCola(Proceso proc){
+
+		//TODO - A completar por el alumno
+		
+	}
+
+	/**
+	 * Metodo que permite simular el paso del tiempo en el sistema completo.
+	 * Se facilita un numero de instantes de tiempo a avanzar y se reproducirá 
+	 * ese avance en cada una de las colas.
+	 * Se deberán eliminar aquellos procesos que hayan terminado su trabajo (en
+	 * orden de menor a mayor tiempo) y restar el tiempo correspondiente a aquellos
+	 * que no vayan a terminar en el periodo asignado. 
+	 * 
+	 * @param tiempo numero de instantes de tiempo que transcurren en la simulación
+	 * @return true en caso de que algún proceso finalice en cualquiera de las colas y false en caso contrario
+	 */
+	public boolean adelantaTiempo(int tiempo){
+
+		//TODO - A completar por el alumno
+		
+	}
+
+	/**
+	 * Metodo que permite consultar el contenido de cada una de las colas del sistema.
+	 * 
+	 * Se deberá devolver el contenido en el mismo orden en el que se haya planificado
+	 * procesar los elementos en el momento de la llamada.
+	 * 
+	 * @param prioridad correspondiente a la cola que se quiere acceder
+	 * @return lista con los procesos incluidos en esa cola en el orden en que se van a procesar
+	 */
+	public List<Proceso> recuperaProcesosPrioridad (Proceso.Prioridad prioridad){
+
+		//TODO - A completar por el alumno
+		
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+package es.ubu.inf.edat.pr04.g1;
+
+import java.time.*;
+import java.util.*;
+
+public class SeparaFechas {
+
+	public static Deque<List<LocalDateTime>> separaFechas(List<LocalDateTime> listaFechas, Duration maxSeparacion){
+		
+	}
+	
+}
